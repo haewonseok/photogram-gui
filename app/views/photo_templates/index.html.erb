@@ -1,15 +1,4 @@
-<h1><%= @the_user.username %><h1>
-
-<dl>
-  <dt>ID</dt>
-  <dd><%= @the_user.id %></dd>
-
-  <dt>Edit user</dt>
-  <dd>Form goes here</dd>
-
-</dl>
-
-<h2>Own photos (<%= @the_user.own_photos.count %>)</h2>
+<h1>List of photos<h1>
 
 <table border="1">
   <tr>
@@ -18,11 +7,11 @@
     </th>
 
     <th>
-      Owner
+      Caption
     </th> 
 
     <th>
-      Caption
+      Owner
     </th> 
 
     <th>
@@ -30,17 +19,13 @@
     </th> 
 
     <th>
-    </th>   
+    </th>
   </tr>
 
-  <% @the_user.own_photos.each do |a_photo| %>
+  <% @list_of_photos.each do |a_photo| %>
     <tr>
       <td>
         <img src="<%= a_photo.image %>">
-      </td>
-
-      <td>
-        <%= a_photo.poster.username %>
       </td>
 
       <td>
@@ -48,11 +33,17 @@
       </td>
 
       <td>
+        <%= a_photo.poster.username %>
+      </td>
+
+      <td>
         <%= a_photo.created_at %>
       </td>
 
-     <td>
+      <td>
+        <a href="/photos/<%= a_photo.id %>">
         Show details
+        </a>
       </td>
     </tr>
   <% end %>
