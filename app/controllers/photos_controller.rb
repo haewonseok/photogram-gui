@@ -73,10 +73,12 @@ class PhotosController < ApplicationController
 
     input_author = params.fetch("query_commenter")
     input_comment = params.fetch("query_comment")
-
-    a_new_comment = Comment.where({ :photo_id => matching_photos }).order({ :created_at => :desc }).at(0)
+    
+    a_new_comment = Comment.new
+    # a_new_comment = Comment.where({ :photo_id => matching_photos }).order({ :created_at => :desc }).at(0)
     a_new_comment.author_id = input_author
     a_new_comment.body = input_comment
+    a_new_comment.photo_id = the_id
 
     a_new_comment.save
 
